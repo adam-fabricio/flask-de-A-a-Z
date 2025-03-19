@@ -11,6 +11,13 @@ class Config:
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     TEMPLATE_FOLDER = os.path.join(ROOT_DIR, "templates")
     APP = None
+    SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://root:root@localhost:3666/teste'
+    # User: usuario do banco de dados
+    # Passwd - senha do usuario
+    # Host - ip do banco de dados
+    # Porta - Porta do banco de dados
+    # database: Nome do banco de dados
+
 
 
 class DevelopmentConfig(Config):
@@ -33,7 +40,7 @@ class ProductionConfig(Config):
     TESTING = False
     DEBUG = False
     IP_HOST = 'localhost'  # servidor na nuvem
-    PORT_HOST = 8080 
+    PORT_HOST = 8080
     URL_MAIN = 'http://%s:%s' % (IP_HOST, PORT_HOST)
 
 
