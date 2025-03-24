@@ -1,8 +1,8 @@
-"""vai
+"""teste
 
-Revision ID: c7fb5097f941
+Revision ID: 94ad8a08b3ac
 Revises: 
-Create Date: 2025-03-19 16:18:11.917522
+Create Date: 2025-03-24 13:42:31.125692
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c7fb5097f941'
+revision = '94ad8a08b3ac'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('category',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=20), nullable=False),
-    sa.Column('description', sa.Text(), nullable=False),
+    sa.Column('description', sa.Text(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
@@ -55,7 +55,7 @@ def upgrade():
     sa.Column('price', sa.Numeric(precision=10, scale=2), nullable=False),
     sa.Column('date_created', sa.DateTime(timezone=6), nullable=False),
     sa.Column('last_update', sa.DateTime(timezone=6), nullable=False),
-    sa.Column('status', sa.Boolean(), nullable=True),
+    sa.Column('status', sa.Integer(), nullable=True),
     sa.Column('user_created', sa.Integer(), nullable=False),
     sa.Column('category', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['category'], ['category.id'], ),

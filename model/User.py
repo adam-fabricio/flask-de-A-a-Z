@@ -2,6 +2,7 @@
 from extensions import db
 from model.Role import Role
 from passlib.hash import pbkdf2_sha256
+from sqlalchemy.orm import relationship
 
 
 class User(db.Model):
@@ -13,7 +14,10 @@ class User(db.Model):
     last_update = db.Column(db.DateTime(6), onupdate=db.func.current_timestamp(), nullable=True)
     recovery_code = db.Column(db.String(200), nullable=True)
     active = db.Column(db.Boolean(), default=1, nullable=True)
-    role = db.Column(db.Integer, db.ForeignKey(Role.id), nullable=False)
+    role = db.Column(db.Integer, db.ForeignKey("Role.id"), nullable=False)
+    funcao = relationship("Role", backref="users")
+
+
 
 
     def get_user_by_email(self):
