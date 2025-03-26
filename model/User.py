@@ -14,8 +14,9 @@ class User(db.Model):
     last_update = db.Column(db.DateTime(6), onupdate=db.func.current_timestamp(), nullable=True)
     recovery_code = db.Column(db.String(200), nullable=True)
     active = db.Column(db.Boolean(), default=1, nullable=True)
-    role = db.Column(db.Integer, db.ForeignKey("Role.id"), nullable=False)
-    funcao = relationship("Role", backref="users")
+    role = db.Column(db.Integer, db.ForeignKey("role.id"), nullable=False)
+    
+    funcao = db.relationship("Role", backref="users")
 
 
 
