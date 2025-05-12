@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
-from extensions import db
-from sqlalchemy.orm import relationship
+from flask_sqlalchemy import SQLAlchemy
+from config import app_config, app_active
 from model.User import User
 from model.Category import Category
+
+config = app_config[app_active]
+db = SQLAlchemy(config.APP)
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -16,5 +19,4 @@ class Product(db.Model):
     status = db.Column(db.Integer, default=1, nullable=True)
     user_created = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
     category = db.Column(db.Integer, db.ForeignKey(Category.id), nullable=False)
-    usuario = relationship(User)
-    categoria = relationship(Category)
+

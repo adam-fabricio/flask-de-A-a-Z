@@ -25,15 +25,14 @@ class DevelopmentConfig(Config):
     DEBUG = True
     IP_HOST = 'localhost'
     PORT_HOST = 8000
-    URL_MAIN = 'http://%s:%s' % (IP_HOST, PORT_HOST)
-
+    URL_MAIN = f'http://{IP_HOST}:{PORT_HOST}'
 
 class TestingConfig(Config):
     TESTING = True
     DEBUG = True
     IP_HOST = 'localhost'  # Endereço do servidor na nuvem
     PORT_HOST = 5000
-    URL_MAIN = 'http://%s:%s' % (IP_HOST, PORT_HOST)
+    URL_MAIN = f'http://{IP_HOST}:{PORT_HOST}'
 
 
 class ProductionConfig(Config):
@@ -41,7 +40,7 @@ class ProductionConfig(Config):
     DEBUG = False
     IP_HOST = 'localhost'  # servidor na nuvem
     PORT_HOST = 8080
-    URL_MAIN = 'http://%s:%s' % (IP_HOST, PORT_HOST)
+    URL_MAIN = f'http://{IP_HOST}:{PORT_HOST}'
 
 
 app_config = {
@@ -51,5 +50,6 @@ app_config = {
         }
 
 
-app_active = os.getenv('FLASK_ENV')
+#app_active = os.getenv('FLASK_ENV')
+app_active = "development"
 

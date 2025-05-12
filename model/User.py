@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from extensions import db
+from flask_sqlalchemy import SQLAlchemy
+from config import app_config, app_active
 from model.Role import Role
-from passlib.hash import pbkdf2_sha256
-from sqlalchemy.orm import relationship
 
+config = app_config[app_active]
+db = SQLAlchemy(config.APP)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -14,13 +15,8 @@ class User(db.Model):
     last_update = db.Column(db.DateTime(6), onupdate=db.func.current_timestamp(), nullable=True)
     recovery_code = db.Column(db.String(200), nullable=True)
     active = db.Column(db.Boolean(), default=1, nullable=True)
-    role = db.Column(db.Integer, db.ForeignKey("role.id"), nullable=False)
+    role = db.Column(db.Integer, db.ForeignKey("Role.id"), nullable=False)
     
-    funcao = db.relationship("Role", backref="users")
-
-
-
-
     def get_user_by_email(self):
         """ To Do: implement """
         return ''
@@ -35,7 +31,7 @@ class User(db.Model):
         """ ToDo implement """
         return ''
 
-
+"""
     def hash_password(self, password):
         try:
             return pbkdf2_sha256.hash(password)
@@ -53,3 +49,4 @@ class User(db.Model):
         except ValueError:
             return False
 
+"""
