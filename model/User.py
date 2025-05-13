@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-from flask_sqlalchemy import SQLAlchemy
-from config import app_config, app_active
+from app import db
 from model.Role import Role
-
-config = app_config[app_active]
-db = SQLAlchemy(config.APP)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)

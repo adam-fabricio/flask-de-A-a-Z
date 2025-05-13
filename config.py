@@ -11,7 +11,7 @@ class Config:
     ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
     TEMPLATE_FOLDER = os.path.join(ROOT_DIR, "templates")
     APP = None
-    SQLALCHEMY_DATABASE_URI = 'mysql+mysqldb://root:root@localhost:3306/teste'
+    SQLALCHEMY_DATABASE_URI = 'mysql://adam:adam@localhost:3306/teste'
     # User: usuario do banco de dados
     # Passwd - senha do usuario
     # Host - ip do banco de dados

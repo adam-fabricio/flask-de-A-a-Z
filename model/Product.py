@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
-from flask_sqlalchemy import SQLAlchemy
-from config import app_config, app_active
+from app import db
 from model.User import User
 from model.Category import Category
 
-config = app_config[app_active]
-db = SQLAlchemy(config.APP)
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
