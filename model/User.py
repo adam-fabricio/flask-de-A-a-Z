@@ -11,7 +11,8 @@ class User(db.Model):
     last_update = db.Column(db.DateTime(6), onupdate=db.func.current_timestamp(), nullable=True)
     recovery_code = db.Column(db.String(200), nullable=True)
     active = db.Column(db.Boolean(), default=1, nullable=True)
-    role = db.Column(db.Integer, db.ForeignKey("Role.id"), nullable=False)
+    role = db.Column(db.Integer, db.ForeignKey("role.id"), nullable=False)
+    phone = db.Column(db.String(20), nullable=True)
     
     def get_user_by_email(self):
         """ To Do: implement """
