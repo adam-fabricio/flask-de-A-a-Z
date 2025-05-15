@@ -1,17 +1,22 @@
 # -*- coding: utf-8 -*-
-from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView, validators
+from flask_admin import Admin # type: ignore
+from flask_admin.contrib.sqla import validators, ModelView # type: ignore
 from model.Role import Role
 from model.User import User
 from model.Category import Category
 from model.Product import Product
-from admin.Views import UserView
 
-validators.Unique.field_flags = {"unique": True}
+
 
 def start_views(app, db):
+    """
+    Initialize Flask-Admin views.
+    :param app: Flask application instance.
+    :param db: SQLAlchemy database instance.
+    """
     admin = Admin(app, name='Meu Estoque', template_mode='bootstrap4')
     admin.add_view(ModelView(Role, db.session, "Funções", category="Usuários"))
-    admin.add_view(UserView(User, db.session, "Usuários", category="Usuários"))
+    admin.add_view(ModelView(User, db.session, "Usuários", category="Usuários"))
     admin.add_view(ModelView(Category, db.session, "Categorias", category="Produtos"))
     admin.add_view(ModelView(Product, db.session, "Produtos", category="Produtos"))
+

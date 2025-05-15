@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from app import db
+from extensions import db
 from model.Role import Role
+from passlib.hash import pbkdf2_sha256
+from sqlalchemy.orm import relationship
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -12,7 +14,10 @@ class User(db.Model):
     recovery_code = db.Column(db.String(200), nullable=True)
     active = db.Column(db.Boolean(), default=1, nullable=True)
     role = db.Column(db.Integer, db.ForeignKey("role.id"), nullable=False)
-    phone = db.Column(db.String(20), nullable=True)
+    funcao = relationship('Role')
+
+    def __repr__(self):
+        return f"{self.id} - {self.username}"
     
     def get_user_by_email(self):
         """ To Do: implement """
@@ -28,7 +33,6 @@ class User(db.Model):
         """ ToDo implement """
         return ''
 
-"""
     def hash_password(self, password):
         try:
             return pbkdf2_sha256.hash(password)
@@ -46,4 +50,3 @@ class User(db.Model):
         except ValueError:
             return False
 
-"""
