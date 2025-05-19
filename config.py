@@ -29,4 +29,10 @@ class ProductionConfig(Config):
     PORT_HOST = 8080
     URL_MAIN = f'http://{IP_HOST}:{PORT_HOST}'
 
+app_config = {
+    'development': DevelopmentConfig(),
+    'testing': testingConfig(),
+    'production': ProductionConfig()
+}
+
 app_active = os.getenv('FlASK_ENV', 'development')
