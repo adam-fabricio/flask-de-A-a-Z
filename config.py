@@ -7,6 +7,12 @@ class Config:
     ROOT_DIR = os.path.abspath(os.path.dirname(__file__))
     TEMPLATES_DIR = os.path.join(ROOT_DIR, 'templates')
     APP = None
+    USER = 'adam'
+    PASSWORD = 'adam'
+    HOST = 'localhost'
+    PORT = 3306
+    DB_NAME = 'livro_flask'
+    SQLALCHEMY_DATABASE_URI = f'mysql+mysqldb://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}'
 
 class DevelopmentConfig(Config):
     Testing = True

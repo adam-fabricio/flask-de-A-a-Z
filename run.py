@@ -8,4 +8,3 @@ print(f'Running in {app_active} mode')
 
 if __name__ == '__main__':
     config.APP.run(host=config.IP_HOST, port=config.PORT_HOST)
-    reload(sys) 
