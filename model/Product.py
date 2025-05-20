@@ -1,7 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
 from config import app_config, app_active
 from model.User import User
 from model.Category import Category
+
 
 
 config = app_config[app_active]
@@ -17,5 +19,7 @@ class Product(db.Model):
     date_created = db.Column(db.DateTime(6), default=db.func.current_timestamp(), nullable=False)
     last_update = db.Column(db.DateTime(6), onupdate=db.func.current_timestamp(), nullable=True)
     status = db.Column(db.Boolean(), default=1, nullable=True)
-    user_created = db.Column(db.Integer, db.ForeignKey(User.id), nullable=False)
-    category = db.Column(db.Integer, db.ForeignKey(Category.id), nullable=False)
+    user_created = db.Column(db.Integer, db.ForeignKey(User.id), nullable=True)
+    category = db.Column(db.Integer, db.ForeignKey(Category.id), nullable=True)
+    usuario = relationship(User)
+    categoria = relationship(Category)
