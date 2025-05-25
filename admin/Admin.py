@@ -1,5 +1,6 @@
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+from flask_admin.menu import MenuLink
 from model.User import User
 from model.Role import Role
 from model.Category import Category
@@ -14,3 +15,5 @@ def start_views(app, db):
     admin.add_view(ModelView(Role, db.session, "Funções", category="Usuários"))
     admin.add_view(ModelView(Category, db.session, "Categorias", category="Produtos"))
     admin.add_view(ModelView(Product, db.session, "Produtos", category="Produtos"))
+
+    admin.add_link(MenuLink(name='Logout', url='/logout'))
