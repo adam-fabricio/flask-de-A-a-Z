@@ -23,3 +23,23 @@ class Product(db.Model):
     category = db.Column(db.Integer, db.ForeignKey(Category.id), nullable=False)  
     usuario = relationship(User)  
     categoria = relationship(Category)
+
+    def get_all():
+        try:
+            res = db.session.query(Product).all()
+        except Exception as e:
+            res = []
+            print(e)
+        finally:
+            db.session.close()
+            return res
+    
+    def save(self):
+        try:
+            db.session.add(self)
+            db.session.commit()
+            return True
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+            return False

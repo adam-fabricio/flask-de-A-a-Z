@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, render_template
 from config import app_config, app_active
 from flask_sqlalchemy import SQLAlchemy
 from controller.User import UserController
+from controller.Product import ProductController
 from admin.Admin import start_views
 
 
@@ -78,6 +79,19 @@ def create_app(config_name):
         username = request.form.get('username')
         password = request.form.get('password')
 
-        return f"Usuário {id} atualizado com sucesso!"  
+        return f"Usuário {id} atualizado com sucesso!"
+
+    @app.route('/product', methods=['POST'])
+    def save_products():
+        product = ProductController()
+        result = product.save_product(request.form)
+
+        if result:
+            message = "Inserido"
+        else:
+            message = "Não Inserido"
+
+        return message  
+    
     
     return app
